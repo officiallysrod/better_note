@@ -1,7 +1,10 @@
 {
-"extends": "airbnb",
-"plugins": ["import", "react", "jsx-a11y"],
-"settings": {
-              "import/core-modules": ["electron"]
-            }
+  "extends": "airbnb",
+  "plugins": ["import", "react", "jsx-a11y"],
+  "settings": {
+    "import/core-modules": ["electron"]
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"]
+  }
 }

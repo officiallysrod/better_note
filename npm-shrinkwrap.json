@@ -1808,6 +1808,11 @@
         }
       }
     },
+    "github-markdown-css": {
+      "version": "2.3.0",
+      "from": "github-markdown-css@latest",
+      "resolved": "https://registry.npmjs.org/github-markdown-css/-/github-markdown-css-2.3.0.tgz"
+    },
     "glob": {
       "version": "6.0.4",
       "from": "glob@>=6.0.1 <7.0.0",

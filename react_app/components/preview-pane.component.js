@@ -1,5 +1,7 @@
 import React from 'react';
 import Showdown from 'showdown';
+require('github-markdown-css');
+require('./preview-pane.component.css');
 
 const markdownConverterOptions = {
   tasklists: true,
@@ -17,7 +19,7 @@ class PreviewPane extends React.Component {
 
   render() {
     return (
-      <div className="pane preview-pane">
+      <div className="pane preview-pane markdown-body">
         <div dangerouslySetInnerHTML={this.parseMarkdown()} />
       </div>
     );

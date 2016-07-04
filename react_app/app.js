@@ -12,7 +12,6 @@ class App extends React.Component {
     super(props);
 
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
-
     this.state = {
       noteBody: ''
     };
@@ -22,15 +21,26 @@ class App extends React.Component {
     this.setState({ noteBody: editorContent });
   }
 
+  focusTextEditor(editor) {
+    editor.focus();
+  }
+
   render() {
     return (
-      <div>
+      <div className="pane-group">
         <AceEditor
+          className="pane"
+          setOptions={{
+            showPrintMargin: false,
+            showInvisibles: true
+          }}
+          height="100%"
           mode="markdown"
           theme="github"
           keyboardHandler="vim"
           tabSize={2}
           value={this.state.noteBody}
+          onLoad={this.focusTextEditor}
           onChange={this.onNoteBodyChange}
         />
         <PreviewPane markdown={this.state.noteBody} />

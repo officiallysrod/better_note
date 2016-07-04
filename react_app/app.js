@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AceEditor from 'react-ace';
+import 'brace/mode/markdown';
+import 'brace/theme/github';
+import 'brace/keybinding/vim';
 
 class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <strong>React is working.</strong>
-      </div>
+      <AceEditor
+        mode="markdown"
+        theme="github"
+        keyboardHandler="vim"
+        tabSize="2"
+      />
     );
   }
 }

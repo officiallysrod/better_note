@@ -6,9 +6,12 @@ const { app, BrowserWindow } = electron;
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 1200, height: 800 });
+  mainWindow = new BrowserWindow({
+    width: 1200,
+    height: 800,
+    titleBarStyle: 'hidden'
+  });
   mainWindow.loadURL(`file://${__dirname}/index.html`);
-  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
     mainWindow = null;

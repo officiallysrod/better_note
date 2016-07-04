@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "react": "15.2.0",
+    "react-ace": "3.4.1",
     "react-dom": "15.2.0"
   }
 }

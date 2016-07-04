@@ -467,6 +467,11 @@
       "from": "boom@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/boom/-/boom-2.10.1.tgz"
     },
+    "brace": {
+      "version": "0.8.0",
+      "from": "brace@>=0.8.0 <0.9.0",
+      "resolved": "https://registry.npmjs.org/brace/-/brace-0.8.0.tgz"
+    },
     "brace-expansion": {
       "version": "1.1.5",
       "from": "brace-expansion@>=1.0.0 <2.0.0",
@@ -2143,6 +2148,11 @@
       "from": "lodash._basetostring@>=4.12.0 <4.13.0",
       "resolved": "https://registry.npmjs.org/lodash._basetostring/-/lodash._basetostring-4.12.0.tgz"
     },
+    "lodash._root": {
+      "version": "3.0.1",
+      "from": "lodash._root@>=3.0.0 <3.1.0",
+      "resolved": "https://registry.npmjs.org/lodash._root/-/lodash._root-3.0.1.tgz"
+    },
     "lodash._stringtopath": {
       "version": "4.8.0",
       "from": "lodash._stringtopath@>=4.8.0 <4.9.0",
@@ -2167,6 +2177,16 @@
       "version": "4.4.0",
       "from": "lodash.findindex@>=4.3.0 <5.0.0",
       "resolved": "https://registry.npmjs.org/lodash.findindex/-/lodash.findindex-4.4.0.tgz"
+    },
+    "lodash.isequal": {
+      "version": "4.2.0",
+      "from": "lodash.isequal@>=4.1.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.2.0.tgz"
+    },
+    "lodash.keys": {
+      "version": "4.0.7",
+      "from": "lodash.keys@>=4.0.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.keys/-/lodash.keys-4.0.7.tgz"
     },
     "lodash.rest": {
       "version": "4.0.3",
@@ -2548,6 +2568,11 @@
       "version": "15.2.0",
       "from": "react@latest",
       "resolved": "https://registry.npmjs.org/react/-/react-15.2.0.tgz"
+    },
+    "react-ace": {
+      "version": "3.4.1",
+      "from": "react-ace@latest",
+      "resolved": "https://registry.npmjs.org/react-ace/-/react-ace-3.4.1.tgz"
     },
     "react-dom": {
       "version": "15.2.0",
@@ -3003,6 +3028,11 @@
       "version": "0.0.4",
       "from": "vm-browserify@0.0.4",
       "resolved": "https://registry.npmjs.org/vm-browserify/-/vm-browserify-0.0.4.tgz"
+    },
+    "w3c-blob": {
+      "version": "0.0.1",
+      "from": "w3c-blob@0.0.1",
+      "resolved": "https://registry.npmjs.org/w3c-blob/-/w3c-blob-0.0.1.tgz"
     },
     "watchpack": {
       "version": "0.2.9",

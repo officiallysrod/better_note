@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AceEditor from 'react-ace';
-import 'brace/mode/markdown';
-import 'brace/theme/github';
-import 'brace/keybinding/vim';
+import TextEditor from './components/text-editor.component';
 import PreviewPane from './components/preview-pane.component';
 
 class App extends React.Component {
@@ -17,31 +14,16 @@ class App extends React.Component {
     };
   }
 
-  onNoteBodyChange(editorContent) {
-    this.setState({ noteBody: editorContent });
-  }
-
-  focusTextEditor(editor) {
-    editor.focus();
+  onNoteBodyChange(noteBody) {
+    this.setState({ noteBody });
   }
 
   render() {
     return (
       <div className="pane-group">
-        <AceEditor
-          className="pane"
-          setOptions={{
-            showPrintMargin: false,
-            showInvisibles: true
-          }}
-          height="100%"
-          mode="markdown"
-          theme="github"
-          keyboardHandler="vim"
-          tabSize={2}
-          value={this.state.noteBody}
-          onLoad={this.focusTextEditor}
-          onChange={this.onNoteBodyChange}
+        <TextEditor
+          noteBody={this.state.noteBody}
+          onNoteBodyChange={this.onNoteBodyChange}
         />
         <PreviewPane markdown={this.state.noteBody} />
       </div>

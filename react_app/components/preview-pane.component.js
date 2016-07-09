@@ -12,15 +12,18 @@ const markdownConverterOptions = {
 
 class PreviewPane extends React.Component {
 
-  parseMarkdown() {
+  parseMarkdown(markdown) {
     const converter = new Showdown.Converter(markdownConverterOptions);
-    return { __html: converter.makeHtml(this.props.markdown) };
+    return { __html: converter.makeHtml(markdown) };
   }
 
   render() {
     return (
-      <div className="pane preview-pane markdown-body">
-        <div dangerouslySetInnerHTML={this.parseMarkdown()} />
+      <div className="pane preview-pane">
+        <div
+          className="markdown-body"
+          dangerouslySetInnerHTML={this.parseMarkdown(this.props.markdown)}
+        />
       </div>
     );
   }

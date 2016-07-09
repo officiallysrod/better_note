@@ -10,7 +10,7 @@ class App extends React.Component {
 
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
     this.state = {
-      noteBody: ''
+      noteBody: '```ruby\ndef example\n  @users = User.all\nend\n```'
     };
   }
 

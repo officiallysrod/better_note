@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import NotesList from './components/notes-list.component';
 import TextEditor from './components/text-editor.component';
 import PreviewPane from './components/preview-pane.component';
 import Rebase from 're-base';
@@ -12,7 +13,7 @@ class App extends React.Component {
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
     this.state = {
       notes: [],
-      noteBody: '# LOADING!',
+      noteBody: '',
       loading: true
     };
   }
@@ -23,7 +24,7 @@ class App extends React.Component {
       state: 'notes',
       asArray: true,
       then() {
-        this.setState({ noteBody: this.state.notes[1], loading: false });
+        this.setState({ loading: false });
       }
     });
   }
@@ -34,12 +35,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="pane-group">
-        <TextEditor
-          noteBody={this.state.noteBody}
-          onNoteBodyChange={this.onNoteBodyChange}
-        />
-        <PreviewPane markdown={this.state.noteBody} />
+      <div>
+        <div className="pane-group">
+          <NotesList notes={this.state.notes} />
+          <TextEditor
+            noteBody={this.state.noteBody}
+            onNoteBodyChange={this.onNoteBodyChange}
+          />
+          <PreviewPane markdown={this.state.noteBody} />
+        </div>
       </div>
     );
   }

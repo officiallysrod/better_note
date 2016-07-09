@@ -28,6 +28,7 @@ class TextEditor extends React.Component {
         theme="github"
         keyboardHandler="vim"
         tabSize={2}
+        showGutter={false}
         value={this.props.noteBody}
         onLoad={this.focusTextEditor}
         onChange={this.props.onNoteBodyChange}

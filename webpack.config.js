@@ -18,6 +18,10 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style!css'
+      },
+      {
+        test: /\.woff2?/,
+        loader: 'url?limit=10000'
       }
     ]
   }

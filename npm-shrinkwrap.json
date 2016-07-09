@@ -2951,6 +2951,39 @@
       "from": "rc@>=1.1.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/rc/-/rc-1.1.6.tgz"
     },
+    "re-base": {
+      "version": "1.5.1",
+      "from": "re-base@latest",
+      "resolved": "https://registry.npmjs.org/re-base/-/re-base-1.5.1.tgz",
+      "dependencies": {
+        "firebase": {
+          "version": "2.4.2",
+          "from": "firebase@>=2.2.7 <3.0.0",
+          "resolved": "https://registry.npmjs.org/firebase/-/firebase-2.4.2.tgz",
+          "dependencies": {
+            "faye-websocket": {
+              "version": "0.9.3",
+              "from": "faye-websocket@>=0.6.0",
+              "resolved": "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.9.3.tgz",
+              "dependencies": {
+                "websocket-driver": {
+                  "version": "0.5.2",
+                  "from": "websocket-driver@>=0.5.1",
+                  "resolved": "https://registry.npmjs.org/websocket-driver/-/websocket-driver-0.5.2.tgz",
+                  "dependencies": {
+                    "websocket-extensions": {
+                      "version": "0.1.1",
+                      "from": "websocket-extensions@>=0.1.1",
+                      "resolved": "https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.1.tgz"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "react": {
       "version": "15.2.0",
       "from": "react@latest",

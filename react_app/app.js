@@ -2,16 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TextEditor from './components/text-editor.component';
 import PreviewPane from './components/preview-pane.component';
+import Rebase from 're-base';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.base = Rebase.createClass('https://betternote-c7ec3.firebaseio.com');
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
     this.state = {
-      noteBody: '```ruby\ndef example\n  @users = User.all\nend\n```'
+      notes: [],
+      noteBody: '# LOADING!',
+      loading: true
     };
+  }
+
+  componentDidMount() {
+    this.base.syncState('notes', {
+      context: this,
+      state: 'notes',
+      asArray: true,
+      then() {
+        this.setState({ noteBody: this.state.notes[1], loading: false });
+      }
+    });
   }
 
   onNoteBodyChange(noteBody) {
@@ -29,6 +43,7 @@ class App extends React.Component {
       </div>
     );
   }
+
 }
 
 ReactDOM.render(<App />, document.getElementById('react-app'));

@@ -1,4 +1,5 @@
 import React from 'react';
+import NotesListItem from './notes-list-item.component';
 
 function NotesList(props) {
   return (
@@ -9,16 +10,9 @@ function NotesList(props) {
             <span className="icon icon-folder"></span> Notes
           </h3>
         </li>
-        {props.notes.map((note, index) =>
-          (
-          <li
-            key={index}
-            className={`list-group-item ${index === 0 ? 'active' : ''}`}
-          >
-            {note.body}
-          </li>
-          )
-        )}
+
+        {props.notes.map(note => <NotesListItem key={note.key} body={note.body} />)}
+
       </ul>
     </div>
   );

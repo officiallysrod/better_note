@@ -21,7 +21,8 @@ class TextEditor extends React.Component {
         className="pane"
         setOptions={{
           showPrintMargin: false,
-          showInvisibles: true
+          fontFamily: 'Source Code Pro',
+          fontSize: '10pt'
         }}
         height="100%"
         mode="markdown"
@@ -29,6 +30,7 @@ class TextEditor extends React.Component {
         keyboardHandler="vim"
         tabSize={2}
         showGutter={false}
+        highlightActiveLine={false}
         value={this.props.noteBody}
         onLoad={this.focusTextEditor}
         onChange={this.props.onNoteBodyChange}

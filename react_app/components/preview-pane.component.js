@@ -18,11 +18,13 @@ class PreviewPane extends React.Component {
   }
 
   render() {
+    const htmlString = this.parseMarkdown(this.props.markdown);
+
     return (
       <div className="pane preview-pane">
         <div
           className="markdown-body"
-          dangerouslySetInnerHTML={this.parseMarkdown(this.props.markdown)}
+          dangerouslySetInnerHTML={htmlString}
         />
       </div>
     );

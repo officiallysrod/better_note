@@ -9,9 +9,15 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    titleBarStyle: 'hidden'
+    titleBarStyle: 'hidden',
+    show: false
   });
+
   mainWindow.loadURL(`file://${__dirname}/index.html`);
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;

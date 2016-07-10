@@ -14,7 +14,7 @@ class App extends React.Component {
     this.toggleActiveNote = this.toggleActiveNote.bind(this);
     this.state = {
       notes: [],
-      noteBody: '',
+      activeNote: {},
       appLoading: true
     };
   }
@@ -25,13 +25,19 @@ class App extends React.Component {
       state: 'notes',
       asArray: true,
       then() {
-        this.setState({ appLoading: false });
+        const activeNote = this.state.notes.find(note => note.isActive === true);
+        this.setState({ activeNote, appLoading: false });
       }
     });
   }
 
   onNoteBodyChange(noteBody) {
-    this.setState({ noteBody });
+    const activeNote = this.state.activeNote;
+    const notes = this.state.notes;
+    const activeNoteIndex = notes.indexOf(activeNote);
+    activeNote.body = noteBody;
+    notes[activeNoteIndex] = activeNote;
+    this.setState({ notes, activeNote });
   }
 
   toggleActiveNote(activeNote) {
@@ -39,7 +45,7 @@ class App extends React.Component {
     for (const n of notes) {
       n.isActive = (n.key === activeNote.key);
     }
-    this.setState({ notes });
+    this.setState({ notes, activeNote });
   }
 
   render() {
@@ -51,10 +57,10 @@ class App extends React.Component {
             toggleActiveNote={this.toggleActiveNote}
           />
           <TextEditor
-            noteBody={this.state.noteBody}
+            noteBody={this.state.activeNote.body || ''}
             onNoteBodyChange={this.onNoteBodyChange}
           />
-          <PreviewPane markdown={this.state.noteBody} />
+          <PreviewPane markdown={this.state.activeNote.body} />
         </div>
       </div>
     );

@@ -28,6 +28,7 @@ class TextEditor extends React.Component {
         mode="markdown"
         theme="github"
         keyboardHandler="vim"
+        wrapEnabled
         tabSize={2}
         showGutter={false}
         highlightActiveLine={false}

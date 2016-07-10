@@ -11,7 +11,15 @@ function NotesList(props) {
           </h3>
         </li>
 
-        {props.notes.map(note => <NotesListItem key={note.key} body={note.body} />)}
+        {props.notes.map(note =>
+          <NotesListItem
+            key={note.key}
+            note={note}
+            body={note.body}
+            activeState={note.isActive}
+            toggleActiveNote={props.toggleActiveNote}
+          />)
+        }
 
       </ul>
     </div>
@@ -19,7 +27,8 @@ function NotesList(props) {
 }
 
 NotesList.propTypes = {
-  notes: React.PropTypes.array.isRequired
+  notes: React.PropTypes.array.isRequired,
+  toggleActiveNote: React.PropTypes.func.isRequired
 };
 
 export default NotesList;

@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.eot$|\.svg$|\.ttf$|\.woff2?/,
-        loader: 'file?name=public/styles/fonts/[name].[ext]'
+        loader: 'url?limit=50000'
       }
     ]
   }

@@ -20,8 +20,8 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.woff2?/,
-        loader: 'url?limit=10000'
+        test: /\.eot$|\.svg$|\.ttf$|\.woff2?/,
+        loader: 'file?name=public/styles/fonts/[name].[ext]'
       }
     ]
   }

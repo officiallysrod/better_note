@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AppHeader from './components/app-header.component';
 import NotesList from './components/notes-list.component';
 import TextEditor from './components/text-editor.component';
 import PreviewPane from './components/preview-pane.component';
 import Rebase from 're-base';
+require('../public/styles/css/photon.min.css');
 
 class App extends React.Component {
 
@@ -50,17 +52,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="pane-group">
-          <NotesList
-            notes={this.state.notes}
-            toggleActiveNote={this.toggleActiveNote}
-          />
-          <TextEditor
-            noteBody={this.state.activeNote.body || ''}
-            onNoteBodyChange={this.onNoteBodyChange}
-          />
-          <PreviewPane markdown={this.state.activeNote.body} />
+      <div className="window">
+        <AppHeader />
+        <div className="window-content">
+          <div className="pane-group">
+            <NotesList
+              notes={this.state.notes}
+              toggleActiveNote={this.toggleActiveNote}
+            />
+            <TextEditor
+              noteBody={this.state.activeNote.body || ''}
+              onNoteBodyChange={this.onNoteBodyChange}
+            />
+            <PreviewPane markdown={this.state.activeNote.body} />
+          </div>
         </div>
       </div>
     );

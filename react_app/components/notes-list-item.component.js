@@ -48,7 +48,7 @@ class NotesListItem extends React.Component {
 
     return (
       <li className={listItemClass} onClick={this.handleClick}>
-        <p><strong>{firstLine}</strong></p>
+        <p><strong>{firstLine || 'Untitled'}</strong></p>
         <p>{body}</p>
       </li>
     );

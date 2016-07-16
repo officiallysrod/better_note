@@ -14,6 +14,7 @@ class App extends React.Component {
     this.base = Rebase.createClass('https://betternote-c7ec3.firebaseio.com');
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
     this.toggleActiveNote = this.toggleActiveNote.bind(this);
+    this.addNote = this.addNote.bind(this);
     this.state = {
       notes: [],
       activeNote: {},
@@ -42,6 +43,17 @@ class App extends React.Component {
     this.setState({ notes, activeNote });
   }
 
+  addNote() {
+    const self = this;
+    const newNote = { body: '', isActive: false };
+    this.base.push('notes', {
+      data: newNote,
+      then() {
+        self.toggleActiveNote(self.state.notes[self.state.notes.length - 1]);
+      }
+    });
+  }
+
   toggleActiveNote(activeNote) {
     const notes = this.state.notes;
     for (const n of notes) {
@@ -59,6 +71,7 @@ class App extends React.Component {
             <NotesList
               notes={this.state.notes}
               toggleActiveNote={this.toggleActiveNote}
+              addNote={this.addNote}
             />
             <TextEditor
               noteBody={this.state.activeNote.body || ''}

@@ -2,7 +2,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: './react_app/app.js',
   output: {
-    path: `${__dirname}/public`,
+    path: `${__dirname}/dist`,
     filename: 'bundle.js'
   },
   module: {

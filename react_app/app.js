@@ -5,7 +5,7 @@ import NotesList from './components/notes-list.component';
 import TextEditor from './components/text-editor.component';
 import PreviewPane from './components/preview-pane.component';
 import Rebase from 're-base';
-require('../public/styles/css/photon.min.css');
+require('../dist/styles/css/photon.min.css');
 
 class App extends React.Component {
 

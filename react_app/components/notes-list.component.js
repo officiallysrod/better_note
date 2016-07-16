@@ -1,6 +1,6 @@
 import React from 'react';
 import NotesListItem from './notes-list-item.component';
-require('../../public/styles/fonts/photon-entypo.woff');
+require('../../dist/styles/fonts/photon-entypo.woff');
 
 function NotesList(props) {
   return (

@@ -4,6 +4,7 @@ require('github-markdown-css');
 require('./preview-pane.component.css');
 
 const markdownConverterOptions = {
+  tables: true,
   tasklists: true,
   smoothLivePreview: true,
   strikethrough: true,

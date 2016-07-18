@@ -15,6 +15,7 @@ class App extends React.Component {
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
     this.toggleActiveNote = this.toggleActiveNote.bind(this);
     this.addNote = this.addNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
     this.state = {
       notes: [],
       activeNote: {}
@@ -52,6 +53,16 @@ class App extends React.Component {
     .then(newNoteId => this.toggleActiveNote(newNoteId));
   }
 
+  deleteNote(noteId) {
+    this.db.notes.delete(noteId)
+    .then(() => this.db.notes.orderBy('createdAt').reverse().toArray())
+    .then(notes => {
+      const newActiveNote = notes[0];
+      newActiveNote.isActive = 1;
+      this.setState({ notes, activeNote: newActiveNote });
+    });
+  }
+
   toggleActiveNote(selectedNoteId) {
     const self = this;
 
@@ -82,6 +93,8 @@ class App extends React.Component {
             <TextEditor
               noteBody={this.state.activeNote.body || ''}
               onNoteBodyChange={this.onNoteBodyChange}
+              noteId={this.state.activeNote.id}
+              deleteNote={this.deleteNote}
             />
             <PreviewPane markdown={this.state.activeNote.body} />
           </div>

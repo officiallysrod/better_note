@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
+    "dexie": "1.4.1",
     "github-markdown-css": "2.3.0",
     "re-base": "1.5.1",
     "react": "15.2.0",

@@ -5,6 +5,8 @@
     "import/core-modules": ["electron"]
   },
   "rules": {
-    "comma-dangle": ["error", "never"]
+    "func-names": ["error", "never"],
+    "comma-dangle": ["error", "never"],
+    "no-console": ["error", {"allow": ["log", "warn", "error"]}]
   }
 }

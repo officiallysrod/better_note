@@ -4,62 +4,68 @@ import AppHeader from './components/app-header.component';
 import NotesList from './components/notes-list.component';
 import TextEditor from './components/text-editor.component';
 import PreviewPane from './components/preview-pane.component';
-import Rebase from 're-base';
+import DatabaseInstance from '../db/database';
 require('../dist/styles/css/photon.min.css');
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.base = Rebase.createClass('https://betternote-c7ec3.firebaseio.com');
+    this.db = new DatabaseInstance();
     this.onNoteBodyChange = this.onNoteBodyChange.bind(this);
     this.toggleActiveNote = this.toggleActiveNote.bind(this);
     this.addNote = this.addNote.bind(this);
     this.state = {
       notes: [],
-      activeNote: {},
-      appLoading: true
+      activeNote: {}
     };
   }
 
   componentWillMount() {
-    this.base.syncState('notes', {
-      context: this,
-      state: 'notes',
-      asArray: true,
-      then() {
-        const activeNote = this.state.notes.find(note => note.isActive === true);
-        this.setState({ activeNote, appLoading: false });
-      }
+    this.db.notes.orderBy('createdAt').reverse().toArray()
+    .then(notes => this.setState({ notes }));
+
+    this.db.notes.where('isActive').equals(1).first()
+    .then(activeNote => this.setState({ activeNote }))
+    .catch(error => {
+      console.error(error);
+      this.setState({ activeNote: {} });
     });
   }
 
   onNoteBodyChange(noteBody) {
-    const activeNote = this.state.activeNote;
-    const notes = this.state.notes;
-    const activeNoteIndex = notes.indexOf(activeNote);
-    activeNote.body = noteBody;
-    notes[activeNoteIndex] = activeNote;
-    this.setState({ notes, activeNote });
+    const self = this;
+    self.db.notes.update(self.state.activeNote.id, { body: noteBody })
+    .then(() => self.db.notes.get(self.state.activeNote.id))
+    .then(activeNote => self.setState({ activeNote }))
+    .then(() => self.db.notes.orderBy('createdAt').reverse().toArray())
+    .then(notes => self.setState({ notes }));
   }
 
   addNote() {
-    const self = this;
-    const newNote = { body: '', isActive: false };
-    this.base.push('notes', {
-      data: newNote,
-      then() {
-        self.toggleActiveNote(self.state.notes[self.state.notes.length - 1]);
-      }
-    });
+    this.db.notes.add({
+      body: '',
+      isActive: 0,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    })
+    .then(newNoteId => this.toggleActiveNote(newNoteId));
   }
 
-  toggleActiveNote(activeNote) {
-    const notes = this.state.notes;
-    for (const n of notes) {
-      n.isActive = (n.key === activeNote.key);
-    }
-    this.setState({ notes, activeNote });
+  toggleActiveNote(selectedNoteId) {
+    const self = this;
+
+    this.db.transaction('rw', this.db.notes, function () {
+      this.db.notes.update(selectedNoteId, { isActive: 1 });
+      if (self.state.activeNote.hasOwnProperty('id')) {
+        this.db.notes.update(self.state.activeNote.id, { isActive: 0 });
+      }
+      return this.db.notes.get(selectedNoteId);
+    })
+    .then(activeNote => self.setState({ activeNote }))
+    .then(() => this.db.notes.orderBy('createdAt').reverse().toArray())
+    .then(notes => self.setState({ notes }))
+    .catch(error => console.error(error));
   }
 
   render() {

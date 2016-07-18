@@ -20,7 +20,7 @@ function NotesList(props) {
 
         {props.notes.map(note =>
           <NotesListItem
-            key={note.key}
+            key={note.id}
             note={note}
             body={note.body}
             activeState={note.isActive}

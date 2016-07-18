@@ -9,7 +9,7 @@ class NotesListItem extends React.Component {
   }
 
   handleClick() {
-    this.props.toggleActiveNote(this.props.note);
+    this.props.toggleActiveNote(this.props.note.id);
   }
 
   stripMarkdownCharacters(markdownString) {
@@ -17,7 +17,7 @@ class NotesListItem extends React.Component {
     output = output
       .replace(/\n={2,}/g, '\n')                             // Header
       .replace(/~~/g, '')                                    // Strikethrough
-      .replace(/(- \[ \])/g, '')                             // Checkboxes
+      .replace(/(- \[[x\s]\])/g, '')                             // Checkboxes
       .replace(/`{3}.*\n/g, '')                              // Fenced codeblocks
       .replace(/<(.*?)>/g, '$1')                             // Remove HTML tags
       .replace(/^[=\-]{2,}\s*$/g, '')                        // Remove setext-style headers
@@ -58,7 +58,7 @@ class NotesListItem extends React.Component {
 NotesListItem.propTypes = {
   note: React.PropTypes.object.isRequired,
   body: React.PropTypes.string.isRequired,
-  activeState: React.PropTypes.bool.isRequired,
+  activeState: React.PropTypes.number.isRequired,
   toggleActiveNote: React.PropTypes.func.isRequired
 };
 
